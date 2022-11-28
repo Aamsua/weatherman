@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
     "@syncfusion/ej2-angular-maps": "^20.1.48",
+    "core-js": "^3.26.1",
     "leaflet": "^1.7.1",
     "ngx-toastr": "^14.3.0",
     "rxjs": "~7.5.0",

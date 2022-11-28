@@ -25,12 +25,12 @@ Required to run the application:
 2. Navigate into the 'frontend' folder from the command line and enter ```npm install``` in the terminal.
 3. Start PostgreSQL server (Windows key + R, type ```services.msc```, find your Postgres service, start if it's not running), 
 4. Open PgAdmin and log in. Under 'Databases' create a new database named "weatherman" and click on it to make it active.
-5. Open 'backend_Java' in your IDE (IntelliJ Idea Community in example).
+5. Open 'backend' in your IDE (IntelliJ Idea Community in example).
 6. Connect the backend to the database (In IntelliJ Idea Community install Database Navigator plugin, navigate to  
 View -> Tool Windows -> DB Browser, click on '+' sign choose 'PostgreSQL' and insert your database name (weatherman), user and password.
 Test the connection by clicking the button in the bottom right. If needed, navigate to 
-backend_Java/src/main/resources/application.properties and configure the file according to your database.
-7. Open the file backend_Java/src/main/java/com/example/weatherman_backend/WeathermanApplication.java and start backend
+backend/src/main/resources/application.properties and configure the file according to your database.
+7. Open the file backend/src/main/java/com/example/weatherman_backend/WeathermanBackendApplication.java and start backend
    (in IntelliJ click on the green arrow (or Shift+F10) on the top ribbon right). 
 8. In IDE terminal navigate into 'frontend' folder and type ```ng serve --open``` for the front end to start. The API should open
 automatically at  http://localhost:4200/ .

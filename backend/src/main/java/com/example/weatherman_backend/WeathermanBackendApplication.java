@@ -11,18 +11,18 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
-public class WeathermanApplication {
+public class WeathermanBackendApplication {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(WeathermanApplication.class, args);
+        SpringApplication.run(WeathermanBackendApplication.class, args);
     }
 
     @Bean
     CommandLineRunner run (WeatherService weatherService) {
         return args -> {
 
-            Weather example = new Weather(null, "2022-11-26", "Estonia", "Tartu", -4F, -7F, -3F, -2F, 0F, -9F);
+            Weather example = new Weather(null, "2022-11-25", "Estonia", "Tartu", 3.4F, 3F, 4F, 5F, 1.8F, 1F);
             List<Weather> testList = Arrays.asList(example);
             weatherService.saveWeatherData(testList);
         };
