@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="header">
+        <h5 id="page-title">CGI - Weatherman API</h5>
+    </div>
+
+    <div class="weatherform">
+        <label id="insert">Insert coordinates or select location on map</label>
+        <form [formGroup]="weatherForm" (ngSubmit)="onFormSubmit()">
+            <div class="input-latitude">
+                <label>Latitude</label>
+                <input name="latitude" required formControlName="latitude">
+            </div>
+            <div class="input-longitude">
+                <label>Longitude</label>
+                <input name="longitude" required formControlName="longitude">
+            </div>
+            <div class="days">
+                <label>Days</label>
+                <select required="true" name="days" id="days" formControlName="days">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
+            </div>
+            <div class="submit">
+                <button class="button" type="submit">Get Forecast!</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="currWeatherForm">
+        <label id="insert2">Insert capitalized name of country and date yyyy-mm-dd</label>
+        <form [formGroup]="currWeatherForm" (ngSubmit)="onCurrWeatherFormSubmit()">
+
+            <label for="country">Country</label>
+            <input name="country" placeholder="Country name" required formControlName="country">
+            <label for="date">Date</label>
+            <label for="dateFormation"></label>
+            <input name="date" placeholder="yyyy-mm-dd" required formControlName="date">
+
+
+            <button class="button" type="submit">Get saved forecast</button>
+        </form>
+    </div>
+
+
+    <div class="map">
+        <app-map (coordinates)="setCoordinates($event)"></app-map>
+    </div>
+
+    <div *ngIf="this.weatherDataList.date.length || this.savedForecast.id != 0" class="colors">
+        <span class="accuweather">AccuWeather</span>
+        <div class="openweather">OpenWeather</div>
+        <div class="weatherapi">WeatherApi</div>
+    </div>
+
+    <div *ngIf="this.savedForecast.id == 0" class="location">
+        <h1>{{this.weatherDataList.region}}, {{this.weatherDataList.country}}</h1>
+    </div>
+
+    <table *ngIf="this.weatherDataList.date.length && this.savedForecast.id == 0" class="table-container">
+        <thead>
+            <tr>
+                <th>
+                    <h1>Date</h1>
+                </th>
+                <th>
+                    <h1>Temperature</h1>
+                </th>
+                <th>
+                    <h1>Precipitation probability</h1>
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let weather of htmlWeather; let i = index">
+            <tr>
+                <th rowspan="3">{{weather.date}}</th>
+                <td>{{weather.accuTemp}} °C</td>
+                <td>{{weather.accuPrec}}%</td>
+            </tr>
+            <tr>
+                <td>{{weather.openWthTemp}} °C</td>
+                <td>{{weather.openWthPrec}}%</td>
+            </tr>
+            <tr>
+                <td>{{weather.wthApiTemp}} °C</td>
+                <td>{{weather.wthApiPrec}}%</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <button id="btnSave" #weatherTable *ngIf="htmlWeather.length && this.savedForecast.id == 0" class="button"
+        (click)="saveCurrentWeatherData()">Save weather data</button>
+
+    <table id="currTable" *ngIf="this.savedForecast.id != 0" class="table-container">
+        <thead>
+            <tr>
+                <th>
+                    <h1>Date</h1>
+                </th>
+                <th>
+                    <h1>Temperature</h1>
+                </th>
+                <th>
+                    <h1>Precipitation probability</h1>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th rowspan="3">{{savedForecast.date}}</th>
+                <td>{{savedForecast.accuTemp}} °C</td>
+                <td>{{savedForecast.accuPrec}}%</td>
+            </tr>
+            <tr>
+                <td>{{savedForecast.openWthTemp}} °C</td>
+                <td>{{savedForecast.openWthPrec}}%</td>
+            </tr>
+            <tr>
+                <td>{{savedForecast.wthApiTemp}} °C</td>
+                <td>{{savedForecast.wthApiPrec}}%</td>
+            </tr>
+            <tr>
+                <th>Current</th>
+                <td id="current">{{currWeather.temperature}} °C</td>
+                <td id="current2">{{currWeather.precipitation}}%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div #savedData *ngIf="this.savedForecast.id != 0"></div>
+
+</div>

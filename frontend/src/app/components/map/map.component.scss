@@ -1,0 +1,21 @@
+.map-container {
+  position: absolute;
+  top: 2em;
+  left: 2em;
+  right: 2em;
+  bottom: 0;
+  margin-bottom: 2em;
+}
+
+.map-frame {
+  height: 100%;
+}
+
+#map {
+  height: 250%;
+  width: 50%;
+  border-top-right-radius: 15em;
+  border-bottom-right-radius: 18em;
+  border-bottom-left-radius: 18em;
+  margin-bottom: 2em
+}
